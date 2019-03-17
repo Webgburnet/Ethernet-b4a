@@ -1,0 +1,31 @@
+Utilisation de la librairie UDP
+
+Fonctions
+
+fermeture
+rôle : ferme le socket UDP
+exemple : UDP.fermeture
+
+ouverture(Port_entrant as Int)
+rôle : ouvre le port UDP sortant 
+exemple : UDP.ouverture(3200)
+
+emission (Adr_IP As String,Port_sortant As Int,data() As Byte)
+rôle : réalise l'émission des données contenues dans data() vers l'adresse IP précisée sur le port sortant.
+exemple : UDP.emission("192.168.1.90",5500,data)
+
+reception (chaine As UDPPacket) As String
+rôle: cette fonction retourne le champ de données du paquet UDP reçu.
+exemple : 	Sub UDP_PacketArrived (trame As UDPPacket)
+    
+	
+		Dim message As String
+	
+		message=UDP.reception(trame)
+
+A placer dans votre main
+
+Sub UDP_PacketArrived (trame As UDPPacket)
+
+
+cette fonction est appelée à la réception d'un paquet UDP sur le port Entrant défini.

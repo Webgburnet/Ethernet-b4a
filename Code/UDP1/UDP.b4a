@@ -1,0 +1,65 @@
+﻿Version=6.5
+NumberOfModules=0
+Build1=Default,b4a.example
+Build2=UDP1,b4a.UDP1
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=layout1.bal
+NumberOfLibraries=3
+Library1=byteconverter
+Library2=core
+Library3=network
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: True
+	#IncludeTitle: False
+	#ApplicationLabel: UDP 1
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+Sub Process_Globals
+    Dim UDPSocket1 As UDPSocket
+	Dim Adressepc As String
+End Sub
+
+Sub Globals
+Dim button1 As Button
+	Dim Label1 As Label
+	Private Button2 As Button
+	Private EditText1 As EditText
+	Private Label2 As Label
+	Private Label3 As Label
+	Private Label4 As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+    Activity.LoadLayout("layout1")
+    UDPSocket1.Initialize("UDP",3200,1024)
+End Sub
+
+
+Sub UDP_PacketArrived (packet As UDPPacket)
+    Dim msg As String
+	msg = BytesToString(packet.data, packet.offset, packet.length, "ASCII")
+   	Label1.Text=msg
+End Sub
+
+Sub button1_click
+	Dim data() As Byte
+	'data(0)=0x33
+	'data(1)=0x34
+	Dim bc As ByteConverter
+	data = bc.StringToBytes("Bonjour STI2D","ASCII")
+	'Dim packet As UDPPacket
+	Dim packet As UDPPacket
+    packet.Initialize(data,Adressepc,5500)
+    UDPSocket1.Send(packet)
+	End Sub
+	
+Sub Button2_Click
+	Adressepc=EditText1.text
+End Sub

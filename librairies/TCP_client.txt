@@ -1,0 +1,27 @@
+Utilisation de la librairie TCP
+
+Fonctions
+
+fin_connexion
+rôle : fait une demande de fermeture de la connection TCP
+exemple : TCP_client.fin_connexion
+
+connexion (Adr_ip As String,Port As String)
+rôle : fait une demande de connection sur le serveur TCP présent à l'adresse IP passée à l'appel et sur le port défini par Port. 
+exemple : TCP_client.connexion("192.168.1.90",5500)
+
+emission (octet() as byte)
+rôle : réalise l'émission des données contenues dans octet() vers le serveur TCP
+exemple : TCP_client.emission(octet)
+
+delay (nMillisecond as Long)
+rôle : permet de réaliser une temporisation en milli-seconde. Pendant cette temporisation toutes les autres fonctions sont bloquées.
+exemple :	prolilab_TCP.delay(5000)
+
+
+Les fonctions à placer dans votre source Main
+
+Sub TCP_client_connected (suc As Boolean) : cette fonction est exécutée lorsque la connection TCP est effective
+
+Sub TCP_client_newdata(receive()As Byte) : cette fonction est exécutée lorsque le socket TCP de votre tablette reçoit des octets. Ils sont alors stockés
+dans la chaine receive(). 

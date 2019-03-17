@@ -1,0 +1,114 @@
+﻿Version=5.8
+NumberOfModules=0
+Build1=Default,b4a.example
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="2" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=layout1.bal
+NumberOfLibraries=4
+Library1=core
+Library2=network
+Library3=randomaccessfile
+Library4=byteconverter
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: False
+	#IncludeTitle: True
+	#ApplicationLabel: B4A Example
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+'Activity module
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+	
+	
+	End Sub
+
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Dim Mon_Socket As Socket
+	Dim flux As AsyncStreams
+	Dim Send As Button
+	Dim Label1 As Label
+	Dim Connect As Button
+	Dim deconnect As Button
+	Dim EditText1 As EditText
+	Dim bc As ByteConverter
+	Dim Label2 As Label
+	End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+ 	Activity.LoadLayout("layout1")
+	Label1.text="Non connecté"
+	Connect.Visible=True
+	deconnect.Visible=False
+	Send.Visible=False
+	EditText1.Visible=False
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+Mon_Socket.Close
+End Sub
+
+Sub Mon_Socket_Connected(Succes As Boolean)
+	If Succes=True Then
+	Label1.text="Connecté"
+	Connect.Visible=False
+	deconnect.Visible=True
+	Send.Visible=True
+	EditText1.Visible=True
+	flux.Initialize(Mon_Socket.InputStream,Mon_Socket.OutputStream,"flux")
+	Else
+	Label1.text="Non connecté"
+	Connect.Visible=True
+	deconnect.Visible=False
+	Send.Visible=False
+	EditText1.Visible=False
+	End If
+End Sub
+
+Sub Send_Click
+	Dim emission() As Byte
+	Dim bc As ByteConverter
+	Dim message As String
+	message=EditText1.text
+	emission=bc.StringToBytes(message,"ascii")
+	
+	flux.Write(emission)
+		
+End Sub
+
+Sub Connect_Click
+	Mon_Socket.Initialize("Mon_Socket")
+	Mon_Socket.Connect("192.168.1.96",8000,5000)
+End Sub
+
+Sub deconnect_Click
+	Mon_Socket.Close
+	Label1.text="Non connecté"
+	Connect.Visible=True
+	deconnect.Visible=False
+	Send.Visible=False
+	EditText1.Visible=False
+End Sub
+
+
+Sub flux_newdata(buffer()As Byte)
+	Dim msg As String
+	msg=BytesToString(buffer,0,buffer.length,"ascii")
+	Label2.Text=msg
+End Sub
+
+
+	
+	

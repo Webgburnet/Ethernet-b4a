@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <doclet-version-NOT-library-version>1.00</doclet-version-NOT-library-version>
+  <dependsOn>network</dependsOn>
+  <class b4a_type="StaticCode">
+    <name>b4a.example.udp</name>
+    <shortname>UDP</shortname>
+    <owner>activity</owner>
+    <objectwrapper>java.lang.Class</objectwrapper>
+    <permission>android.permission.INTERNET</permission>
+    <method>
+      <name DesignerName="emission">_emission</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>Adr_IP</name>
+        <type>String</type>
+      </parameter>
+      <parameter>
+        <name>Port_sortant</name>
+        <type>int</type>
+      </parameter>
+      <parameter>
+        <name>data</name>
+        <type>byte[]</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="fermeture">_fermeture</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="Initialise">_initialise</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>Port_entrant</name>
+        <type>int</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="Process_Globals">_process_globals</name>
+      <comment>Subs in this code module will be accessible from all modules.</comment>
+      <returntype>String</returntype>
+    </method>
+    <method>
+      <name DesignerName="reception">_reception</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>chaine</name>
+        <type>anywheresoftware.b4a.objects.SocketWrapper.UDPSocket.UDPPacket</type>
+      </parameter>
+    </method>
+  </class>
+  <version>1</version>
+</root>

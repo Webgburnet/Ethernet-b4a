@@ -1,0 +1,68 @@
+﻿Version=6.5
+NumberOfModules=0
+Build1=Default1,b4a.example1
+Build2=udp2,b4a.UDP2.HB
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+IconFile=
+NumberOfFiles=1
+File1=layout1.bal
+NumberOfLibraries=4
+Library1=core
+Library2=network
+Library3=udp
+Library4=byteconverter
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: False
+	#IncludeTitle: True
+	#ApplicationLabel: UDP 2
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+Sub Process_Globals
+	Dim Adressepc As String
+	
+End Sub
+
+Sub Globals
+	Dim button1 As Button
+	Dim Label1 As Label	
+	Private EditText1 As EditText
+	Private Button2 As Button
+	Private EditText2 As EditText
+	Private Label2 As Label
+	Private Label3 As Label
+	Private Label4 As Label
+	Private Label5 As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+    Activity.LoadLayout("layout1")
+    UDP.Initialise(3200)
+	
+End Sub
+
+
+Sub UDP_PacketArrived (packet As UDPPacket)
+    
+	Dim message As String
+	message=UDP.reception(packet)
+   	Label1.Text=message
+	
+End Sub
+
+Sub button1_click
+	Dim data(2) As Byte
+	Dim bc As ByteConverter
+	data=bc.StringToBytes(EditText1.Text,"utf-8")'"Bonjour STI2D SIN","ASCII")
+	UDP.emission(Adressepc,5500,data)'cles wifi
+	End Sub
+	
+
+
+Sub Button2_Click
+	Adressepc=EditText2.text
+End Sub

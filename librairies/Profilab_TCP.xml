@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <doclet-version-NOT-library-version>1.00</doclet-version-NOT-library-version>
+  <dependsOn>network</dependsOn>
+  <dependsOn>phone</dependsOn>
+  <dependsOn>randomaccessfile</dependsOn>
+  <class b4a_type="StaticCode">
+    <name>B4I.Profilab.profilab_tcp</name>
+    <shortname>Profilab_TCP</shortname>
+    <owner>activity</owner>
+    <objectwrapper>java.lang.Class</objectwrapper>
+    <permission>android.permission.INTERNET</permission>
+    <method>
+      <name DesignerName="connexion">_connexion</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>Adr_IP</name>
+        <type>String</type>
+      </parameter>
+      <parameter>
+        <name>Port</name>
+        <type>String</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="Emission">_emission</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>Valeur</name>
+        <type>double</type>
+      </parameter>
+      <parameter>
+        <name>canal</name>
+        <type>short</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="fin_connexion">_fin_connexion</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="Process_Globals">_process_globals</name>
+      <returntype>String</returntype>
+    </method>
+    <method>
+      <name DesignerName="reception">_reception</name>
+      <returntype>B4I.Profilab.profilab_tcp._transfert</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>tramer</name>
+        <type>byte[]</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="test_bit">_test_bit</name>
+      <returntype>boolean</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>Mot_Binaire</name>
+        <type>String</type>
+      </parameter>
+      <parameter>
+        <name>rang</name>
+        <type>short</type>
+      </parameter>
+      <parameter>
+        <name>valeur</name>
+        <type>String</type>
+      </parameter>
+    </method>
+    <method>
+      <name DesignerName="to_binary">_to_binary</name>
+      <returntype>String</returntype>
+      <parameter>
+        <name>ba</name>
+        <type>anywheresoftware.b4a.BA</type>
+      </parameter>
+      <parameter>
+        <name>octet</name>
+        <type>double</type>
+      </parameter>
+    </method>
+  </class>
+  <class>
+    <name>B4I.Profilab.profilab_tcp._transfert</name>
+    <shortname>transfert</shortname>
+    <owner>process</owner>
+    <method>
+      <name>Initialize</name>
+      <comment>Initializes the fields to their default value.</comment>
+      <returntype>void</returntype>
+    </method>
+    <field>
+      <name>IsInitialized</name>
+      <comment>Tests whether the object has been initialized.</comment>
+      <returntype>boolean</returntype>
+    </field>
+    <field>
+      <name>valeur</name>
+      <returntype>double</returntype>
+    </field>
+    <field>
+      <name>canal</name>
+      <returntype>short</returntype>
+    </field>
+  </class>
+  <version>1</version>
+</root>
